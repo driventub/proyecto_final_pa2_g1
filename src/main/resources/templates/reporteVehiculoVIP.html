@@ -1,0 +1,60 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Budget</title>
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+	integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+	crossorigin="anonymous">
+
+</head>
+
+<body>
+	<div th:replace="fragments/reportes_header :: reportes_header"></div>
+
+	<table class="table table-bordered">
+		<!----cabezera de la tabla---->
+		<thead class="table-dark">
+			<h3>Reporte vehiculo VIP</h3>
+			<tr>
+				<th>ID</th>
+				<th>Placa</th>
+				<th>Modelo</th>
+				<th>Marca</th>
+				<th>Año Fabricacion</th>
+				<th>Pais</th>
+				<th>Cilindraje</th>
+				<th>Avaluo</th>
+				<th>Valor por dia</th>
+				<th>Valor IVA</th>
+				<th>Valor Total Pagado</th>
+			</tr>
+		</thead>
+
+		<!----cuerpo de la tabla---->
+		<tbody>
+			<div th:text="${mensaje}" th:if="${mensaje!=null}"></div>
+			<tr th:each=" dato : ${listaVIP}">
+				<form action="#">
+					<td th:text="${dato.vehiculo.id}"></td>
+					<td th:text="${dato.vehiculo.placa}"></td>
+					<td th:text="${dato.vehiculo.modelo}"></td>
+					<td th:text="${dato.vehiculo.marca}"></td>
+					<td th:text="${dato.vehiculo.anioFabricacion}"></td>
+					<td th:text="${dato.vehiculo.pais}"></td>
+					<td th:text="${dato.vehiculo.cilindraje}"></td>
+					<td th:text="${dato.vehiculo.avaluo}"></td>
+					<td th:text="${dato.vehiculo.valorPorDia}"></td>
+					<td th:text="${dato.valorIVA}"></td>
+					<td th:text="${dato.valorTotalAPagar}"></td>
+				</form>
+			</tr>
+		</tbody>
+	</table>
+</body>
+
+</html>

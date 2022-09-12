@@ -1,0 +1,166 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Budget</title>
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+	integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+	crossorigin="anonymous">
+
+</head>
+
+<body>
+
+	<div th:replace="fragments/empleado_header :: empleado_header"></div>
+
+	<div th:text="${mensaje}" th:if="${mensaje!=null}"></div>
+	<div class="container">
+		<h1 class="display-4">Retirar sin reserva</h1>
+	</div>
+	<div class=container my-5>
+
+		<h3 class="lead">Buscar</h3>
+		<div class="card-body">
+			<form action="#" th:action="@{/empleados/disponiblidad}"
+				th:object="${sinReservaTO}" method="post">
+				<table class="table table-bordered">
+					<tr>
+						<td><label>Marca:</label></td>
+						<td><input type="text" id="placa" th:name="marca"
+							th:field="*{marca}" required></td>
+					</tr>
+					<tr>
+						<td><label>Modelo:</label></td>
+						<td><input type="text" id="marca" th:name="modelo"
+							th:field="*{modelo}" required></td>
+					</tr>
+				</table>
+				<input type="submit" value="buscar" class="btn btn-info">
+			</form>
+		</div>
+
+		<div th:if="${visible1}" class="card-body">
+			<table class="table table-striped">
+				<!----cabezera de la tabla---->
+				<thead>
+					<tr>
+						<h1 class="lead">Lista de vehiculos</h1>
+
+					</tr>
+
+					<tr>
+						<th>Placa</th>
+						<th>Modelo</th>
+						<th>Marca</th>
+						<th>Año de Fabriación</th>
+						<th>Estado</th>
+						<th>Valor Por Día</th>
+
+
+					</tr>
+				</thead>
+
+				<!----cuerpo de la tabla---->
+				<tbody>
+					<tr th:each=" vehiculo : ${listVehiculos}">
+						<form action="#" th:method="get">
+							<td th:text="${vehiculo.placa}">
+							<td th:text="${vehiculo.modelo}"></td>
+							<td th:text="${vehiculo.marca}"></td>
+							<td th:text="${vehiculo.anioFabricacion}"></td>
+							<td th:text="${vehiculo.estado}"></td>
+							<td th:text="${vehiculo.valorPorDia}"></td>
+						</form>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+
+		<!----Reserva---->
+		<div th:if="${visible2}" class=container my-5>
+			<h3 class="lead">Reserva</h3>
+			<div class="card-body">
+				<form action="#" th:action="@{/empleados/sinReserva/buscarReserva}"
+					th:object="${reservarVehiculoTO}" method="post">
+					<table class="table table-bordered">
+						<tr>
+							<td><label>Placa:</label></td>
+							<td><input type="text" id="placa" th:field="*{placa}"
+								required></td>
+						</tr>
+
+						<tr>
+							<td><label>Cedula:</label></td>
+							<td><input type="text" id="cedula" th:field="*{cedula}"
+								required></td>
+						</tr>
+						<tr>
+							<td><label>Fecha Inicio:</label></td>
+							<td><input type="datetime-local" id="fechaInicio"
+								th:field="*{fechaInicio}" required></td>
+						</tr>
+						<tr>
+							<td><label>Fecha Final:</label></td>
+							<td><input type="datetime-local" id="fechaFinal"
+								th:field="*{fechaFinal}" required></td>
+						</tr>
+
+					</table>
+					<input type="submit" value="Verificar" class="btn btn-info">
+				</form>
+			</div>
+		</div>
+
+
+		<!----Pago---->
+		<div th:if="${visible3}" class=container my-5>
+			<h3 class="lead">Realizar Pago</h3>
+			<div class="card-body">
+				<form th:action="@{/empleados/insertarPago}"
+					th:object="${reservarVehiculoTO}" method="post">
+					<table class="table table-bordered">
+						<tr>
+							<td><label>Valor:</label></td>
+							<td><input disabled type="text" id="valor"
+								th:field="*{valorTotalAPagar}" required></td>
+						</tr>
+						<tr>
+							<td><label>Tarjeta:</label></td>
+							<td><input type="text" id="tarjeta" th:field="*{tarjeta}"
+								required></td>
+						</tr>
+						<tr hidden=false>
+							<td><label>Placa:</label></td>
+							<td><input type="text" id="placa" th:field="*{placa}"
+								required></td>
+						</tr>
+
+						<tr hidden=false>
+							<td><label>Cedula:</label></td>
+							<td><input type="text" id="cedula" th:field="*{cedula}"
+								required></td>
+						</tr>
+						<tr hidden=false>
+							<td><label>Fecha Inicio:</label></td>
+							<td><input type="datetime-local" id="fechaInicio"
+								th:field="*{fechaInicio}" required></td>
+						</tr>
+						<tr hidden=false>
+							<td><label>Fecha Final:</label></td>
+							<td><input type="datetime-local" id="fechaFinal"
+								th:field="*{fechaFinal}" required></td>
+						</tr>
+					</table>
+					<input type="submit" value="Realizar cobro" class="btn btn-info">
+				</form>
+			</div>
+		</div>
+
+	</div>
+</body>
+
+</html>

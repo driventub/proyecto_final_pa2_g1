@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Budget</title>
+
+</head>
+<style>
+.btn-group button {
+	background-color: #17A2B8; /* Green background */
+	border: 1px solid rgb(255, 255, 255); /* Green border */
+	color: white; /* White text */
+	font-size: larger;
+	padding: 30px 24px; /* Some padding */
+	cursor: pointer; /* Pointer/hand icon */
+	width: 400%; /* Set a width if needed */
+	display: block; /* Make the buttons appear below each other */
+}
+
+.btn-group button:not(:last-child) {
+	border-bottom: none; /* Prevent double borders */
+}
+
+/* Add a background color on hover */
+.btn-group button:hover {
+	background-color: #138496;
+}
+
+.container {
+	height: 100px;
+	position: relative;
+	border: 3px solid green;
+}
+
+.center {
+	margin: 0;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	-ms-transform: translate(-50%, -50%);
+	transform: translate(-50%, -50%);
+}
+
+body {
+	background-image: url("/css/budget.png");
+	height: 100vh;
+	width: 100vw;
+	background-size: cover;
+	background-position: center;
+	background-image: url("/css/budget.png");
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	background-size: cover;
+}
+
+a {
+	color: white;
+	text-decoration: none;
+}
+</style>
+
+<body>
+	<h1>UCE</h1>
+	<div class="center">
+		<div class=" btn-group">
+			<button>
+				<a th:href="@{/clientes/vehiculoBuscar}"> Cliente</a>
+			</button>
+			<button>
+				<a th:href="@{/empleados/todos}">Empleado </a>
+			</button>
+			<button>
+				<a th:href="@{/reportes/reporteReserva}">Reportes </a>
+			</button>
+		</div>
+	</div>
+
+
+
+
+</body>
+</html>

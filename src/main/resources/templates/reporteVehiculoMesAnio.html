@@ -1,0 +1,56 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width = device - width , initial-scale=1">
+<meta http-equiv="x-ua-compatible">
+<title>Budget</title>
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+	integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+	crossorigin="anonymous">
+</head>
+
+<body>
+	<div th:replace="fragments/reportes_header :: reportes_header"></div>
+
+
+<br>
+<hr>
+	<div class="container text-center">
+		<form action='#' th:action="@{/reportes/vehiculoVip}"
+			th:object="${mesAnioTo}" method="get">
+			<table class="table table-striped">
+				<tr>
+					<td><label>Mes: </label></td>
+					<td><select th:name="mes" id="mes" th:field="*{mes}">
+							<option th:value="seleccionar" th:text="Seleccionar"></option>
+							<option th:value="1" th:text="Enero"></option>
+							<option th:value="2" th:text="Febrero"></option>
+							<option th:value="3" th:text="Marzo"></option>
+							<option th:value="4" th:text="Abril"></option>
+							<option th:value="5" th:text="Mayo"></option>
+							<option th:value="6" th:text="Junio"></option>
+							<option th:value="7" th:text="Julio"></option>
+							<option th:value="8" th:text="Agosto"></option>
+							<option th:value="9" th:text="Septiembre"></option>
+							<option th:value="10" th:text="Octubre"></option>
+							<option th:value="11" th:text="Noviembre"></option>
+							<option th:value="12" th:text="Diciembre"></option>
+					</select></td>
+				</tr>
+				<tr>
+					<td><label>Año: </label></td>
+					<td><input type="text" id="anio" th:field="*{anio}" required>
+					</td>
+				</tr>
+
+			</table>
+
+			<input type="submit" value="Buscar" class="btn btn-info">
+		</form>
+	</div>
+<hr>
+
+</body>

@@ -1,0 +1,48 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="x-ua-compatible">
+	<title>Budget</title>
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+	integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+	crossorigin="anonymous">
+
+</head>
+
+<body>
+
+<div th:replace = "fragments/empleado_header :: empleado_header" ></div>
+
+	<div class="card-body">
+		<div th:classappend="'alert-' + (${clase != null} ? ${clase} : info)" th:if="${mensaje != null}"
+			th:text="${mensaje}" class="alert">
+		</div>
+		<div class="card-body">
+			<div th:classappend="'alert-' + (${clase2 != null} ? ${clase2} : info)" th:if="${mensaje2 != null}"
+				th:text="${mensaje2}" class="alert">
+			</div>
+			<div class=container my-5>
+				<div class="card-body">
+					<form th:action="@{/empleados/reservar}" th:object="${reserva}" method="get">
+						<table class table>
+							<tr>
+								<td>
+									<label class="col-form-label">Numero de reserva:</label>
+								</td>
+								<td>
+									<input type="text" id="numeroReserva" th:field="*{numero}">
+								</td>
+							</tr>
+
+						</table>
+						<input type="submit" class="btn btn-success" value="Buscar Reserva">
+					</form>
+				</div>
+			</div>
+</body>
+
+</html>

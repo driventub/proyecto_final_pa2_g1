@@ -1,0 +1,75 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+	<link th:href="@{/CSS/misprimerosestilos.css}" rel="stylesheet">
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="x-ua-compatible">
+	<title>Budget</title>
+
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+		integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+</head>
+
+<body>
+<div th:replace = "fragments/empleado_header :: empleado_header" ></div>
+
+	<div class=container my-5>
+		<div class="card-body">
+			<table class="table">
+				<!----cabezera de la tabla---->
+				<thead>
+					<tr>
+						<th>Placa</th>
+						<th>Modelo</th>
+						<th>Estado Vehiculo</th>
+						<th>Estado Reserva</th>
+						<th>Fecha Inicial</th>
+						<th>Fecha Final</th>
+						<th>Reservado por</th>
+
+					</tr>
+				</thead>
+
+				<!----cuerpo de la tabla---->
+				<tbody>
+					<form action="#" th:action="@{/empleados/retirarVehiculo}" th:object="${reserva}" th:method="put">
+
+						<td th:text="${reserva.vehiculo.placa}"></td>
+						<td th:text="${reserva.vehiculo.modelo}"></td>
+						<td th:text="${reserva.vehiculo.estado}"></td>
+						<td th:text="${reserva.estado}"></td>
+						<td th:text="${reserva.fechaInicio}"></td>
+						<td th:text="${reserva.fechaFinal}"></td>
+						<td th:text="${reserva.cliente.cedula}"></td>
+
+						<td>
+							<input type="submit" class="btn btn-danger" value="Retirar">
+						</td>
+						<tr hidden=false>
+							<td>
+								<input class="form-control" type="text" id="id" th:field="*{id}">
+							</td>
+						</tr>
+						<tr hidden=false>
+							<td>
+								<input class="form-control" type="text" id="numero" th:field="*{numero}">
+							</td>
+						</tr>
+
+						<tr hidden=false>
+							<td>
+								<input class="form-control" type="text" id="placa" th:field="${vehiculo.placa}">
+							</td>
+						</tr>
+					</form>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</body>
+
+</html>

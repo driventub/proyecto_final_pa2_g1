@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" conten="width=device-width, initial-scale=1">
+<meta http-equiv="x-ua-compatible">
+<title>Budget</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
+<body>
+<div th:replace = "fragments/empleado_header :: empleado_header" ></div>
+	
+	<div class="container my-5">
+		<h1>Actualizar Vehiculo</h1>
+
+		<div class="table">
+			<form action="#"
+				th:action="@{/empleados/actualizarVehi/{placa}(placa=${vehiculo.placa})}"
+				th:object="${vehiculo}" th:method="put">
+				<table>
+					<tr>
+						<td><label class="col-form-label">Placa:</label></td>
+						<td><input type="text" class="form-control" id="placa"
+							th:field="*{placa}" readonly ></td>
+					</tr>
+					
+					<tr>
+						<td><label class="col-form-label">Modelo:</label></td>
+						<td><input type="text" class="form-control" id="modelo"
+							th:field="*{modelo}" required></td>
+					</tr>
+					
+					<tr>
+						<td><label class="col-form-label">Marca:</label></td>
+						<td><input type="text" class="form-control" id="marca"
+							th:field="*{marca}" required></td>
+					</tr>
+					
+					<tr>
+						<td><label class="col-form-label">Año de Fabricación:</label></td>
+						<td><input type="text" class="form-control" id="ano"
+							th:field="*{anioFabricacion}" required></td>
+					</tr>
+					
+					<tr>
+						<td><label class="col-form-label">Cilindraje:</label></td>
+						<td><input type="text" class="form-control" id="cilindraje"
+							th:field="*{cilindraje}" required></td>
+					</tr>
+					
+					<tr>
+						<td><label class="col-form-label">País:</label></td>
+						<td><input type="text" class="form-control" id="pais"
+							th:field="*{pais}" required></td>
+					</tr>
+					
+					<tr>
+						<td><label class="col-form-label">Avaluo:</label></td>
+						<td><input type="text" class="form-control" id="avaluo"
+							th:field="*{avaluo}" required></td>
+					</tr>
+					
+					<tr>
+						<td><label class="col-form-label">Valor por día:</label></td>
+						<td><input type="text" class="form-control" id="valorPorDia"
+							th:field ="*{valorPorDia}" required></td>
+					</tr>
+					
+					<tr>
+						<td><label class="col-form-label">Estado:</label></td>
+						<td><input  type="text" class="form-control" id="estado"
+							th:field="*{estado}" readonly></td>
+					</tr>
+					
+
+				</table>
+				<input class="btn btn-info" type="submit" value="Actualizar">
+			</form>
+		</div>
+	</div>
+</body>
+</html>
